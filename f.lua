@@ -1,15 +1,15 @@
+local function table_append(t, ...)
+    for i = 1, select('#', ...) do
+        table.insert(t, (select(i, ...))) -- extra braces needed
+    end
+end
+
 
 function call_each(f, ...)
     print('call_each', f, ...)
     local result = {}
-    -- for i in 
-    for _,v in ipairs{...} do
-        local tmp = {f(v)}
-        for _, tmp2 in ipairs(tmp) do
-        if tmp2 then
-            table.insert(result, tmp2)
-        end
-        end
+    for i = 1, select('#', ...) do
+        table_append(result, f((select(i, ...)))) -- extra braces needed
     end
     return table.unpack(result)
 end
