@@ -13,22 +13,17 @@ end
 -- call_each(print, 'a', 'b', 'c', 'd')
 
 
+
 function bind2(f, g)
     return function(...)
-        return g(f(...))
+        return call_each(g, call_each(f, ...))
     end
 end
 
 
 
-
 debug.setmetatable(function() end, {
     __shr = bind2,
-    __shr = function(f, g)
-        return function(...)
-            return call_each(bind2(f, g), ...)
-        end
-    end,
 })
 
 
