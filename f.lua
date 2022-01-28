@@ -28,8 +28,41 @@ debug.setmetatable(function() end, {
 
 
 
+
+
+
+
+
+function a(x)
+    return '('..x..')'
+end
+
+function b(x)
+    return '['..x..']'
+end
+
+function c(x)
+    return '{'..x..'}'
+end
+
+function d(x)
+    return '<'..x..'>'
+end
+
+
+
+
+
+
+
 local bound = a >> b >> c >> d >> print
 
 bound('l', 'm', 'n')
+
+-- print   <{[(l)]}>
+-- print   <{[(m)]}>
+-- print   <{[(n)]}>
+
+
 
 
