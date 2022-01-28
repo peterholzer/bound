@@ -24,12 +24,12 @@ function c(x)
 end
 
 
-print(c(b(a('m'))))
-
-
-print(bind(a, b)('m'))
-
 
 local bound = a >> b >> c >> print
 
 bound('n')
+-- prints [(<n>)]
+
+
+
+
