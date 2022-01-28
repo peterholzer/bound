@@ -1,10 +1,14 @@
 
 function call_each(f, ...)
+    print('call_each', f, ...)
     local result = {}
+    -- for i in 
     for _,v in ipairs{...} do
-        local tmp = f(v)
-        if tmp then
-            table.insert(result, tmp)
+        local tmp = {f(v)}
+        for _, tmp2 in ipairs(tmp) do
+        if tmp2 then
+            table.insert(result, tmp2)
+        end
         end
     end
     return table.unpack(result)
