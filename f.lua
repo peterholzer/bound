@@ -1,35 +1,15 @@
 
-function bind(f, g)
-    return function(x)
-        return g(f(x))
+function call_each(f, ...)
+    local result = {}
+    for _,v in ipairs{...} do
+        local tmp = f(v)
+        if tmp then
+            table.insert(result, tmp)
+        end
     end
+    return table.unpack(result)
 end
 
-debug.setmetatable(function() end, {
-    __shr = function(f, g)
-        return bind(f, g)
-    end
-})
-
-function a(x)
-    return '<'..x..'>'
-end
-
-function b(x)
-    return '('..x..')'
-end
-
-function c(x)
-    return '['..x..']'
-end
-
-
-
-local bound = a >> b >> c >> print
-
-bound('n')
--- prints [(<n>)]
-
-
+call_each(print, 'a', 'b', 'c', 'd')
 
 
